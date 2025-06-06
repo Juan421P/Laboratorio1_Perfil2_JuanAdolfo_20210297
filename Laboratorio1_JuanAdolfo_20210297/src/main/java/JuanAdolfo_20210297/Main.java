@@ -71,6 +71,7 @@ public class Main {
             if(productos.isEmpty()){
                 System.out.println("No hay productos!! Asegúrese de agregar alguno de antemano con la opción número 2.");
             }else{
+                boolean update = false;
                 Scanner scCase3 = new Scanner(System.in);
                 System.out.print("Ingrese el ID del producto a actualizar: ");
                 int updateId = tryParseInt(scCase3.next());
@@ -90,6 +91,7 @@ public class Main {
                                 System.out.print("Nuevo nombre: ");
                                 String newName = scCase3.nextLine();
                                 producto.setNombre(newName);
+                                update = true;
                                 break;
                             case 2:
                                 float newPrice;
@@ -102,11 +104,16 @@ public class Main {
                                     producto.setPrecio(newPrice);
                                     if(newPrice <= 0) System.out.println("Por favor, ingrese un precio válido");
                                 }while(newPrice <= 0);
+                                update = true;
                                 break;
                         }
                         System.out.println("Actualización exitosa!!");
                         System.out.println();
                     }
+                }
+                if(update == false){
+                    System.out.println("No se pudo actualizar por una u otra razón :(");
+                    System.out.println();
                 }
             }
             break;
@@ -123,11 +130,13 @@ public class Main {
                     if(producto.getId() == deleteId){
                         productos.remove(producto);
                         System.out.println("Producto eliminado exitosamente!! Ya estuvo.");
+                        System.out.println();
                         delete = true;
                     }
                 }
                 if(delete = false){
                     System.out.println("No se pudo realizar la eliminación por una u otra razón.");
+                    System.out.println();
                 }
             }
             break;
